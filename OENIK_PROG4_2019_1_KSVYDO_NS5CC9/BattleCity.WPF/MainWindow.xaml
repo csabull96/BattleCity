@@ -1,0 +1,44 @@
+﻿<Window x:Class="BattleCity.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BattleCity.WPF"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        SizeToContent="WidthAndHeight"
+        FocusManager.FocusedElement="{Binding ElementName=Battlefield}"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        ResizeMode="NoResize">
+    <StackPanel DataContext="{StaticResource VM}" Background="Black" Orientation="Horizontal">
+        <local:GameScreen Width="{StaticResource GameScreenWidth}" Height="{StaticResource GameScreenHeight}" x:Name="Battlefield"/>
+        <StackPanel Background="Gray">
+            <Label Content="Rekord" FontSize="56" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <Label Content="{Binding Gameplay.HighScore}" FontSize="56" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <Label Content="{Binding Gameplay.Score}"  FontSize="28" HorizontalAlignment="Center" Margin="0,0,0,150"/>
+            <StackPanel Margin="0,0,0,200">
+                <ItemsControl DataContext="{StaticResource VM}" ItemsSource="{Binding Gameplay.Players}" HorizontalContentAlignment="Stretch">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel HorizontalAlignment="Stretch">
+                                <Label Content="{Binding Id}" ContentStringFormat="P{0}" FontSize="72" FontFamily="Bahnschrift SemiBold SemiConden" Margin="20,0,0,0"/>
+                                <Label Content="{Binding Life}" ContentStringFormat="{}{0} ❤" FontSize="36" VerticalAlignment="Center" FontFamily="Bahnschrift SemiBold SemiConden" Margin="20,0,0,0"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="Restart" Width="100" Height="40" Margin="10,0,5,0" Click="Restart_Click" Command="{Binding RestartCommand}"/>
+                <Button Content="Exit" Width="100" Height="40" Margin="10,0,5,0" Click="Exit_Click" Command="{Binding ExitCommand}"/>
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
+</Window>
+

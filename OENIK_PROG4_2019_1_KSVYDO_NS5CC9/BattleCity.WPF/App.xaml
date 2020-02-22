@@ -1,0 +1,13 @@
+﻿<Application x:Class="BattleCity.WPF.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:BattleCity.WPF"
+             xmlns:custom="clr-namespace:BattleCity.ViewModel;assembly=BattleCity.ViewModel"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             StartupUri="StartUpParameters.xaml">
+    <Application.Resources>
+        <custom:ViewModel x:Key="VM"/>
+        <system:Double x:Key="GameScreenWidth">780</system:Double>
+        <system:Double x:Key="GameScreenHeight">780</system:Double>
+    </Application.Resources>
+</Application>
